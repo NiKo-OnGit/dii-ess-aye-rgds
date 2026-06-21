@@ -1,4 +1,4 @@
-## DII-ESS-AYE
+## DII-ESS-AYE-RGDS
 A janky emulationstation theme for ROCKNIX meant to make the Anbernic RG DS feel a bit more like a chunky DSi.
 
 # Known Issues (that won't be fixed)
