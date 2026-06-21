@@ -1,22 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <theme defaultTransition="instant" defaultView="gamecarousel">
     <formatVersion>7</formatVersion>
+    
+  <subset name="background" displayName="Background Theme" default="grey">
+        <include name="grey" displayName="Grey" />
+        <include name="animal-crossing" displayName="Animal Crossing" />
+        <include name="castlevania" displayName="Castlevania" />
+        <include name="fireemblem" displayName="Fire Emblem" />
+        <include name="grandia2" displayName="Grandia II" />
+        <include name="mario" displayName="Mario Castle" />
+        <include name="metroid" displayName="Metroid" />
+        <include name="pokecomp" displayName="Pokemon (Competitive)" />
+        <include name="pika" displayName="Pokemon (Pikachu)" />
+        <include name="ruby-sapphire" displayName="Pokemon (Ruby/Sapphire)" />
+        <include name="smash" displayName="Smash Bros" />
+        <include name="tetris" displayName="Tetris" />
+        <include name="yoshi" displayName="Yoshi" />
+        <include name="zelda" displayName="Zelda" />
+    </subset>
 
-    <!--
-        Device: Anbernic RG DS
-        Display: 1920x480 (three 640x480 screens horizontally spanned)
-        Top screen (left): X 0-0.333, center X=0.167
-        Bottom screen (middle): X 0.333-0.666, center X=0.5
-        Right screen (dummy): X 0.666-1.0, center X=0.833 (unused, background only)
-    -->
+    <variables>
+        <bgImagePath ifSubset="background:animal-crossing">${themePath}/assets/images/common/bg_animalcrossing.png</bgImagePath>
+        <bgImagePath ifSubset="background:castlevania">${themePath}/assets/images/common/bg_castlevania.png</bgImagePath>
+        <bgImagePath ifSubset="background:fireemblem">${themePath}/assets/images/common/bg_fireemblem.png</bgImagePath>
+        <bgImagePath ifSubset="background:grandia2">${themePath}/assets/images/common/bg_grandia2.png</bgImagePath>
+        <bgImagePath ifSubset="background:grey">${themePath}/assets/images/common/bg_grey.png</bgImagePath>
+        <bgImagePath ifSubset="background:mario">${themePath}/assets/images/common/bg_mariocastle.png</bgImagePath>
+        <bgImagePath ifSubset="background:metroid">${themePath}/assets/images/common/bg_metroid.png</bgImagePath>
+        <bgImagePath ifSubset="background:pika">${themePath}/assets/images/common/bg_pika.png</bgImagePath>
+        <bgImagePath ifSubset="background:pokecomp">${themePath}/assets/images/common/bg_pokecomp.png</bgImagePath>
+        <bgImagePath ifSubset="background:ruby-sapphire">${themePath}/assets/images/common/bg_rubysapphire.png</bgImagePath>
+        <bgImagePath ifSubset="background:smash">${themePath}/assets/images/common/bg_smash.png</bgImagePath>
+        <bgImagePath ifSubset="background:tetris">${themePath}/assets/images/common/bg_tetris.png</bgImagePath>
+        <bgImagePath ifSubset="background:yoshi">${themePath}/assets/images/common/bg_yoshi.png</bgImagePath>
+        <bgImagePath ifSubset="background:zelda">${themePath}/assets/images/common/bg_zelda.png</bgImagePath>
+    </variables>
 
-    <!-- This section generously provided by Ant (https://github.com/anthonycaccese)
-    ///
-    View: Screen
-    ///
-    -->
     <view name="screen">
-        <!-- Start: Resets -->
         <controllerActivity name="controllerActivity">
             <visible>false</visible>
         </controllerActivity>
@@ -26,46 +46,41 @@
         <text name="clock">
             <pos>1 1</pos>
         </text>
-        <!-- End: Resets -->
     </view>
 
-    <!-- Global elements -->
     <view name="system, gamecarousel">
-        <!-- Both screens -->
         <image name="background" extra="true">
             <pos>0 0</pos>
             <size>1 1</size>
-            <path>${themePath}/assets/images/common/background.png</path>
+            <path>${bgImagePath}</path>
             <zIndex>0</zIndex>
         </image>
 
-        <!-- Top screen (X 0-0.333) -->
-        
-        <!-- This section (and its graphics) generously provided by Ant (https://github.com/anthonycaccese) -->
-        <!-- Start: System Indicators -->
         <stackpanel name="system-indicators-left,system-indicators-right" extra="true">
-            <w>0.3229</w><!-- 620 -->
-            <h>0.05625</h><!-- 27 -->
+            <w>0.3229</w>
+            <h>0.05625</h>
             <separator>5</separator>
-            <pos>0.0052083 0.0166667</pos><!-- 10 8 -->
+            <pos>0.0052083 0.0166667</pos>
         </stackpanel>
+        
         <stackpanel name="system-indicators-left" extra="true">
             <orientation>horizontal</orientation>
             <reverse>false</reverse>
             <clock name="system-clock">
-                <color>333333FF</color>
+                <color>FFFFFFFF</color>
                 <fontPath>${themePath}/assets/fonts/dsi_font.otf</fontPath>
-                <fontSize>0.0291667</fontSize><!-- 14 -->
+                <fontSize>0.0291667</fontSize>
                 <lineSpacing>1</lineSpacing>
+                <zIndex>56</zIndex> 
             </clock>
         </stackpanel>
         <stackpanel name="system-indicators-right" extra="true">
             <orientation>horizontal</orientation>
             <reverse>true</reverse>
             <batteryText name="system-battery-text">
-                <color>333333FF</color>
+                <color>FFFFFFFF</color>
                 <fontPath>${themePath}/assets/fonts/dsi_font.otf</fontPath>
-                <fontSize>0.0291667</fontSize><!-- 14 -->
+                <fontSize>0.0291667</fontSize>
                 <lineSpacing>1</lineSpacing>
             </batteryText>
             <batteryIcon name="system-battery-icon">
@@ -79,51 +94,16 @@
             </batteryIcon>
             <networkIcon name="system-network-icon">
                 <maxSize>1 1</maxSize>
-                <color>333333FF</color>
+                <color>FFFFFFFF</color>
                 <networkIcon>${themePath}/assets/images/common/network_icon_on.svg</networkIcon>
                 <planemodeIcon>${themePath}/assets/images/common/network_icon_off.svg</planemodeIcon>
             </networkIcon>
         </stackpanel>
-        <!-- End: System Indicators -->
 
-        <image name="left_tab_image" extra="true">
-            <path>${themePath}/assets/images/common/left_tab.png</path>
-            <pos>0 0.85</pos>
-            <size>0.0833 0.15</size>
-            <zIndex>1</zIndex>
-        </image>
 
-        <text name="left_tab_text" extra="true">
-            <text>Prev</text>
-            <pos>0.03 0.885</pos>
-            <fontPath>${themePath}/assets/fonts/dsi_font.otf</fontPath>
-            <fontSize>0.05</fontSize>
-            <color>333333FF</color>
-            <alignment>left</alignment>
-            <zIndex>2</zIndex>
-        </text>
-
-        <image name="right_tab_image" extra="true">
-            <path>${themePath}/assets/images/common/right_tab.png</path>
-            <pos>0.25 0.85</pos>
-            <size>0.0833 0.15</size>
-            <zIndex>1</zIndex>
-        </image>
-
-        <text name="right_tab_text" extra="true">
-            <text>Next</text>
-            <pos>0.266 0.885</pos>
-            <fontPath>${themePath}/assets/fonts/dsi_font.otf</fontPath>
-            <fontSize>0.05</fontSize>
-            <color>333333FF</color>
-            <alignment>right</alignment>
-            <zIndex>2</zIndex>
-        </text>
-
-        <!-- Bottom screen (X 0.333-0.666) -->
         <image name="text_bubble" extra="true">
             <path>${themePath}/assets/images/common/text_bubble.png</path>
-            <pos>0.5 0.3</pos>
+            <pos>0.499 0.29</pos>
             <origin>0.5 0.5</origin>
             <size>0.2667 0.45</size>
             <zIndex>56</zIndex>
@@ -131,7 +111,7 @@
 
         <image name="start_window" extra="true">
             <path>${themePath}/assets/images/common/start_window.png</path>
-            <pos>0.5 0.67</pos>
+            <pos>0.5 0.640</pos>
             <origin>0.5 0.5</origin>
             <maxSize>0.12 0.32</maxSize>
             <zIndex>55</zIndex>
@@ -139,34 +119,50 @@
 
         <image name="scroll_bar" extra="true">
             <path>${themePath}/assets/images/common/scroll_bar.png</path>
-            <pos>0.5 0.95</pos>
+            <pos>0.498 0.89</pos>
             <origin>0.5 0.5</origin>
-            <size>0.3333 0.1</size>
-            <zIndex>1</zIndex>
+            <size>0.42 0.1</size>
+            <zIndex>140</zIndex>
         </image>
 
-        <!-- Visibility override -->
         <helpsystem name="help">
             <textColor>00000000</textColor>
             <iconColor>00000000</iconColor>
         </helpsystem>
+        
+        <text name="legend" extra="true">
+            <pos>0.5 0.89</pos> 
+            <origin>0.5 0.5</origin>
+            <size>0.5 0.1</size>
+            <text>(A) Seleziona   (B) Indietro   (START) Menu</text>
+            <fontPath>${themePath}/assets/fonts/3ds_font.ttf</fontPath>
+            <fontSize>0.042</fontSize>
+            <color>555555FF</color>
+            <shadowColor>00000044</shadowColor>
+			<shadowOffset>2 2</shadowOffset>
+			<alignment>center</alignment>
+            <zIndex>150</zIndex>
+        </text>
     </view>
 
-    <!-- Main system selection menu -->
     <view name="system">
-        <!-- Top screen (X 0-0.333) -->
-        <image name="distro_logo" extra="true">
-            <path>${themePath}/assets/images/common/distro_logo.png</path>
-            <pos>0.167 0.5</pos>
+        <image name="system_hero_art" extra="true">
+            <path>${themePath}/assets/images/systems/hero/${system.theme}.webp</path>
+            <default>${themePath}/assets/images/common/distro_logo.png</default>
+            <pos>0.1667 0.44</pos>
             <origin>0.5 0.5</origin>
-            <maxSize>0.3 0.6</maxSize>
-            <zIndex>1</zIndex>
+            <maxSize>0.32 0.7</maxSize>
+            <zIndex>10</zIndex>
+            <storyboard>
+                <animation event="activate" property="opacity" from="0" to="1" duration="400" mode="easeOut"/>
+                <animation event="activate" property="x" from="0.1667" to="0.1667" duration="0" mode="instant"/>
+                <animation event="activate" property="y" from="0.5" to="0.44" duration="500" mode="easeOut"/>
+            </storyboard>
         </image>
 
-        <!-- Bottom screen (X 0.333-0.666) -->
         <carousel name="systemcarousel">
             <type>horizontal</type>
-            <pos>0.5 0.64</pos>
+            <pos>0.5 0.62</pos>
             <origin>0.5 0.5</origin>
             <size>0.3333 0.25</size>
             <logoSize>0.1 0.17</logoSize>
@@ -184,32 +180,29 @@
             <fontPath>${themePath}/assets/fonts/dsi_font.otf</fontPath>
             <forceUppercase>true</forceUppercase>
             <fontSize>0.03</fontSize>
-            <storyboard>
-                <animation event="scroll" property="scale"/>
-            </storyboard>
         </text>
 
         <text name="systemName" extra="true">
             <text>{system:collection} ? proper({system:fullName}) : {system:fullName}</text>
-            <pos>0.5 0.15</pos>
+            <pos>0.5 0.24</pos>
             <origin>0.5 0.5</origin>
             <size>0.2333 0.1</size>
             <fontPath>${themePath}/assets/fonts/dsi_font.otf</fontPath>
-            <fontSize>0.04</fontSize>
-            <color>333333FF</color>
+            <fontSize>0.045</fontSize>
+            <color>000000FF</color>
             <alignment>center</alignment>
             <zIndex>57</zIndex>
         </text>
 
         <text name="systemInfo">
-            <pos>0.5 0.35</pos>
+            <pos>0.5 0.36</pos>
             <origin>0.5 0.5</origin>
             <size>0.2333 0.3</size>
             <fontPath>${themePath}/assets/fonts/dsi_font.otf</fontPath>
             <fontSize>0.025</fontSize>
             <color>333333FF</color>
             <alignment>center</alignment>
-            <zIndex>53</zIndex>
+            <zIndex>100</zIndex>
         </text>
 
         <image name="logo">
@@ -220,57 +213,78 @@
                 <scale>1.45</scale>
                 <scaleOrigin>0.5 0.35</scaleOrigin>
             </image>
-            <storyboard>
-                <animation event="scroll" property="scale"/>
-            </storyboard>
         </image>
     </view>
 
     <view name="gamecarousel">
-        <!-- Both screens -->
+        <text name="logoText">
+            <pos>0 0</pos>
+            <size>0 0</size>
+            <fontSize>0</fontSize>
+            <color>00000000</color>
+        </text>
+
         <sound name="launch">
             <path>${themePath}/assets/sounds/launch.wav</path>
         </sound>
-
-        <!-- Top screen (X 0-0.333) -->
-        <image name="preview_panel" extra="true">
-            <path>${themePath}/assets/images/common/preview_panel.png</path>
-            <pos>0.167 0.45</pos>
+        <image name="md_image">
+            <pos>0.167 0.5</pos>
             <origin>0.5 0.5</origin>
-            <size>0.2667 0.65</size>
-            <zIndex>1</zIndex>
-        </image>
+            <maxSize>0.35 0.6</maxSize>
+            <zIndex>1</zIndex> 
+            <path>{game:image}</path> 
+            <default>{game:thumbnail}</default> 
+            <visible>false</visible> 
+        </image>        
 
         <video name="md_video">
-            <pos>0.167 0.45</pos>
+            <pos>0.167 0.5</pos>
             <origin>0.5 0.5</origin>
             <maxSize>0.35 0.6</maxSize>
             <effect>none</effect>
-            <delay>3</delay>
+            <delay>1.5</delay>
             <showSnapshotNoVideo>true</showSnapshotNoVideo>
             <showSnapshotDelay>true</showSnapshotDelay>
-            <snapshotSource>image</snapshotSource>
+            <snapshotSource>image</snapshotSource> 
             <zIndex>2</zIndex>
         </video>
-
-        <text name="logoText">
-            <visible>false</visible>
-        </text>
-
-        <text name="systemNameFromGame" extra="true">
-            <pos>0.1667 0.9</pos>
-            <size>0.15 0.11</size>
+        <image name="md_marquee">
+            <pos>0.167 0.18</pos> 
             <origin>0.5 0.5</origin>
-            <text>{game:system:collection} ? proper({game:system:fullName}) : {game:system:fullName}</text>
+            <maxSize>0.146 0.618</maxSize>
+            <zIndex>10</zIndex>
+            <storyboard>
+                <animation event="activate" property="opacity" from="0" to="1" duration="600" mode="easeIn"/>
+            </storyboard>
+        </image>
+        <rating name="md_rating">
+            <pos>0.247 0.835</pos>
+            <origin>0.5 0.5</origin>
+            <size>0.22 0.05</size>
+            <color>FFFFFFFF</color>
+            <unfilledColor>222222FF</unfilledColor>
+            <zIndex>15</zIndex>
+        </rating>
+
+        <text name="md_name">
+            <pos>0.1667 0.92</pos>
+            <size>0.3 0.11</size>
+            <origin>0.5 0.5</origin>
             <alignment>center</alignment>
             <fontPath>${themePath}/assets/fonts/dsi_font.otf</fontPath>
-            <fontSize>0.05</fontSize>
+            <fontSize>0.04</fontSize>
+            <color>FFFFFFFF</color>
+            <zIndex>57</zIndex>
+			<storyboard>
+                <animation event="activate" property="opacity" from="0" to="1" duration="600" mode="easeIn"/>
+            </storyboard>
         </text>
 
-        <!-- Bottom screen (X 0.333-0.666) -->
         <gamecarousel name="gamecarousel">
             <type>horizontal</type>
-            <pos>0.5 0.64</pos>
+            <linear>true</linear> 
+            <speed>2</speed>
+            <pos>0.5 0.62</pos>
             <origin>0.5 0.5</origin>
             <size>0.3333 0.315</size>
             <logoScale>1</logoScale>
@@ -284,6 +298,11 @@
 
         <image name="gamecarouselLogo">
             <origin>0.5 0.5</origin>
+            <default>${themePath}/assets/images/common/game_slot.png</default>
+            <storyboard>
+                <animation event="activate" property="opacity" from="0" to="1" duration="500" mode="easeOut"/>
+                <animation event="activate" property="offset" from="0 0.05" to="0 0" duration="500" mode="easeOut"/>
+            </storyboard>
             <image name="game_slot" extra="true">
                 <path>${themePath}/assets/images/common/game_slot.png</path>
                 <pos>0.05 0</pos>
@@ -293,38 +312,30 @@
                 <scale>1.5</scale>
                 <scaleOrigin>0.5 0.4</scaleOrigin>
             </image>
-            <storyboard>
-                <animation property="scale"/>
-            </storyboard>
         </image>
 
-        <text name="md_name">
-            <pos>0.5 0.15</pos>
-            <origin>0.5 0.5</origin>
-            <size>0.2333 0.1</size>
-            <fontPath>${themePath}/assets/fonts/dsi_font.otf</fontPath>
-            <fontSize>0.04</fontSize>
-            <color>333333FF</color>
-            <alignment>center</alignment>
-            <zIndex>57</zIndex>
-        </text>
-
         <text name="md_description">
-            <pos>0.5 0.31</pos>
+            <pos>0.5 0.245</pos>
             <origin>0.5 0.5</origin>
-            <size>0.2333 0.22</size>
+            <size>0.2333 0.275</size>
             <fontPath>${themePath}/assets/fonts/dsi_font.otf</fontPath>
             <fontSize>0.03</fontSize>
             <color>555555FF</color>
             <alignment>center</alignment>
             <zIndex>57</zIndex>
+            <storyboard>
+                <animation event="activate" property="opacity" from="0" to="1" duration="700" mode="easeIn"/>
+            </storyboard>
         </text>
 
         <text name="gamecarouselLogoText">
-            <fontSize>0.01</fontSize>
             <fontPath>${themePath}/assets/fonts/dsi_font.otf</fontPath>
+            <fontSize>0.02</fontSize>
+            <color>333333FF</color>
+            <alignment>center</alignment>
+            <visible>true</visible>
             <storyboard>
-                <animation event="scroll" property="scale"/>
+                <animation event="scroll" property="scale" from="1" to="1.1" duration="200" mode="easeOut"/>
             </storyboard>
         </text>
     </view>
@@ -333,17 +344,14 @@
         <menuBackground name="menubg">
             <color>F0F0F0FF</color>
         </menuBackground>
-
         <menuText name="menutext, menutitle, menufooter">
             <fontSize>0.03</fontSize>
             <fontPath>${themePath}/assets/fonts/dsi_font.otf</fontPath>
         </menuText>
-
         <menuTextSmall name="menutextsmall">
             <fontSize>0.03</fontSize>
             <fontPath>${themePath}/assets/fonts/dsi_font.otf</fontPath>
         </menuTextSmall>
-
         <menuGroup name="menugroup">
             <fontSize>0.03</fontSize>
             <fontPath>${themePath}/assets/fonts/dsi_font.otf</fontPath>
