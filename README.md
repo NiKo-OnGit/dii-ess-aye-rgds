@@ -51,6 +51,3 @@ These can be run on your device after all gamelists, games, and images are in pl
 - Ant (https://github.com/anthonycaccese) for the status and slot icons and their implementation.
 - Jeod (https://github.com/JeodC) for help testing the Thor variant.
 - Zoidburg13 (https://github.com/Zoidburg13) for their wonderful system icons. 
-
-### Previews
-<img src="main_preview.jpeg" width="49%" /> <img src="game_preview.jpeg" width="49%" />
